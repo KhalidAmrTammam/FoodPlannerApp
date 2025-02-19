@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/primaryColor">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:text="@string/dividerText"
+        android:textColor="@color/accentColor"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintStart_toEndOf="@+id/divider6"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="121dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="13dp"
+        android:background="@color/accentColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="121dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="293dp"
+        android:layout_marginTop="13dp"
+        android:background="@color/accentColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="356dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="27dp"
+        android:backgroundTint="@color/buttonPrimary"
+        android:drawableLeft="@drawable/user_svgrepo_com"
+        android:text="@string/usernameSignin"
+        android:textColor="@color/accentColor"
+        android:textStyle="bold"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="356dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="27dp"
+        android:backgroundTint="@color/buttonPrimary"
+        android:text="@string/signUp"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="356dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="27dp"
+        android:backgroundTint="@color/buttonPrimary"
+        android:text="@string/guest"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:contentDescription="@string/welcome_msg"
+        android:foreground="@drawable/authentication_gradient"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/authentication_page_image" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="356dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="27dp"
+        android:backgroundTint="@color/buttonPrimary"
+        android:drawableLeft="@drawable/icons8_facebook"
+        android:text="@string/facebookSignin"
+        android:textColor="@color/accentColor"
+        android:textStyle="bold"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="356dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="27dp"
+        android:backgroundTint="@color/buttonPrimary"
+        android:drawableLeft="@drawable/icons8_google"
+        android:text="@string/googleSignin"
+        android:textColor="@color/accentColor"
+        android:textStyle="bold"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="368dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="casual"
+        android:text="@string/welcome_msg"
+        android:textColor="@color/accentColor"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

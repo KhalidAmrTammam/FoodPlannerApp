@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1001115344388",
+    "project_id": "food-planner-by-khalid-amr",
+    "storage_bucket": "food-planner-by-khalid-amr.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001115344388:android:1db39bd9b90e0c17445f51",
+        "android_client_info": {
+          "package_name": "com.iti.java.foodplannerbykhalidamr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMakPxWUwciKdAxROhvBvcMLT_6qJaSpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

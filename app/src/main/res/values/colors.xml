@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primaryColor">#1E1E1E</color> <!-- Dark Charcoal -->
+    <color name="secondaryColor">#FF7043</color> <!-- Warm Orange -->
+    <color name="accentColor">#FAFAFA</color> <!-- Bright White -->
+
+    <!-- Backgrounds -->
+    <color name="backgroundLight">#F5F5F5</color> <!-- Soft Gray -->
+    <color name="backgroundDark">#121212</color> <!-- Dark Background -->
+
+    <!-- Text Colors -->
+    <color name="textPrimary">#FFFFFF</color> <!-- White -->
+    <color name="textSecondary">#B0BEC5</color> <!-- Light Gray -->
+    <color name="textDark">#212121</color> <!-- Dark Gray -->
+
+    <!-- Buttons & Highlights -->
+    <color name="buttonPrimary">#000000</color> <!-- Black Button -->
+    <color name="buttonSecondary">#4CAF50</color> <!-- Green Button -->
+    <color name="highlightColor">#FFCC80</color> <!-- Soft Orange Highlight -->
+
+</resources>
+

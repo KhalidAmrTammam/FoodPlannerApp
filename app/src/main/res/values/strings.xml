@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Food Planner Project</string>
+    <string name="usernameSignin">Sign in with Username</string>
+    <string name="facebookSignin">Sign in with Facebook</string>
+    <string name="googleSignin">Sign in with Google</string>
+    <string name="dividerText">Dont Have an account ?</string>
+    <string name="signUp">Sign Up</string>
+    <string name="guest">Continue as a guest</string>
+    <string name="welcomeSyntx">Welcome Back</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgotPassword">Forgot Password ?</string>
+    <string name="login">Login</string>
+    <string name="dontHaveAccount">Dont have an account? SignUp</string>
+    <string name="searchBar">Search for recipes</string>
+    <string name="recipeText">Recipes</string>
+    <string name="weeklyPlan">Weekly plan</string>
+    <string name="favourites">Favourites</string>
+    <string name="search_recipes">Search recipes...</string>
+    <string name="featured_recipes">Featured Recipes</string>
+    <string name="weekly_plan">Weekly Plan</string>
+    <string name="favorites">Favorites</string>
+    <string name="welcome_msg">Welcome to ZMH ! No Hassle choosing Meals any more ^_^ </string>
+    <string name="open_drawer">Open Navigation Drawer</string>
+    <string name="close_drawer">Close Navigation Drawer</string>
+</resources>
