@@ -12,7 +12,20 @@
           "package_name": "com.iti.java.foodplannerbykhalidamr"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1001115344388-3ci0mrj2nad1pu9os5pq3evtuhsl3e7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iti.java.foodplannerbykhalidamr",
+            "certificate_hash": "dfb3b0372eb79bf3831394e8ff5bbf65c13da2c4"
+          }
+        },
+        {
+          "client_id": "1001115344388-72cbl3j7c02fg0fcf8gdhil9r6n2be9s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDMakPxWUwciKdAxROhvBvcMLT_6qJaSpU"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001115344388-72cbl3j7c02fg0fcf8gdhil9r6n2be9s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
