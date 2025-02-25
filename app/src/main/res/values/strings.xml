@@ -30,4 +30,6 @@
     <string name="signup_welcome_msg">Sign up to ZMH</string>
     <string name="re_enter_password">Re-enter Password</string>
     <string name="signup">Sign Up</string>
+    <string name="meal_of_the_day">Meal of the Day</string>
+    <string name="meal_name">Meal Name</string>
 </resources>

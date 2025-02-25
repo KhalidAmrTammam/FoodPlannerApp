@@ -3,11 +3,10 @@ package com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.presenter;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.model.EmailAuthCompleteListener;
-//import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.EmailAuthPresenterInterface;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.view.EmailAuthViewer;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.model.EmailAuthenticator;
 
-public class EmailAuthPresenter /*implements EmailAuthPresenterInterface*/ {
+public class EmailAuthPresenter {
     private final EmailAuthenticator model;
     private final EmailAuthViewer view;
 
@@ -16,7 +15,6 @@ public class EmailAuthPresenter /*implements EmailAuthPresenterInterface*/ {
         this.view = view;
     }
 
-   // @Override
     public void signUp(String email, String password) {
         model.signUp(email, password, new EmailAuthCompleteListener() {
             @Override
@@ -32,7 +30,6 @@ public class EmailAuthPresenter /*implements EmailAuthPresenterInterface*/ {
         });
     }
 
-    //@Override
     public void login(String email, String password) {
         model.login(email, password, new EmailAuthCompleteListener() {
             @Override

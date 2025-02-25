@@ -1,55 +1,153 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment4">
+
+    <!-- Splash Screen -->
     <fragment
         android:id="@+id/splashFragment4"
-        android:name="com.iti.java.foodplannerbykhalidamr.SplashFragment"
-        android:label="SplashFragment" >
-        <action
-            android:id="@+id/action_splashFragment4_to_authenticationFragment42"
-            app:destination="@id/authenticationFragment4" />
-        <action
-            android:id="@+id/action_splashFragment4_to_homeFragment"
-            app:destination="@id/homeFragment" />
+        android:name="com.iti.java.foodplannerbykhalidamr.splahScreen.SplashFragment"
+        android:label="SplashFragment">
+        <action android:id="@+id/action_splashFragment4_to_authenticationFragment4" app:destination="@id/authenticationFragment4"/>
+        <action android:id="@+id/action_splashFragment4_to_homeFragment" app:destination="@id/homeFragment"/>
     </fragment>
+
+    <!-- Authentication Screens -->
     <fragment
         android:id="@+id/authenticationFragment4"
         android:name="com.iti.java.foodplannerbykhalidamr.authentication.AuthenticationFragment"
-        android:label="AuthenticationFragment" >
-        <action
-            android:id="@+id/action_authenticationFragment4_to_emailLoginFragment2"
-            app:destination="@id/emailLoginFragment2" />
-        <action
-            android:id="@+id/action_authenticationFragment4_to_emailSignupFragment"
-            app:destination="@id/emailSignupFragment" />
-        <action
-            android:id="@+id/action_authenticationFragment4_to_homeFragment"
-            app:destination="@id/homeFragment" />
+        android:label="AuthenticationFragment">
+        <action android:id="@+id/action_authenticationFragment4_to_emailLoginFragment2" app:destination="@id/emailLoginFragment2"/>
+        <action android:id="@+id/action_authenticationFragment4_to_emailSignupFragment" app:destination="@id/emailSignupFragment"/>
+        <action android:id="@+id/action_authenticationFragment4_to_homeFragment" app:destination="@id/homeFragment"/>
     </fragment>
+
     <fragment
         android:id="@+id/emailLoginFragment2"
         android:name="com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.view.EmailLoginFragment"
         android:label="fragment_email_login"
-        tools:layout="@layout/fragment_email_login" >
-        <action
-            android:id="@+id/action_emailLoginFragment2_to_homeFragment"
-            app:destination="@id/homeFragment" />
+        tools:layout="@layout/fragment_email_login">
+        <action android:id="@+id/action_emailLoginFragment2_to_homeFragment" app:destination="@id/homeFragment"/>
     </fragment>
+
     <fragment
         android:id="@+id/emailSignupFragment"
         android:name="com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.view.EmailSignupFragment"
         android:label="fragment_email_signup"
-        tools:layout="@layout/fragment_email_signup" >
-        <action
-            android:id="@+id/action_emailSignupFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+        tools:layout="@layout/fragment_email_signup">
+        <action android:id="@+id/action_emailSignupFragment_to_homeFragment" app:destination="@id/homeFragment"/>
     </fragment>
+
+    <!-- Home Screen (With Bottom Navigation) -->
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.iti.java.foodplannerbykhalidamr.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.iti.java.foodplannerbykhalidamr.home.view.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_itemInfoFragment"
+            app:destination="@id/itemInfoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_weeklyPlannerFragment"
+            app:destination="@id/weeklyPlannerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <!-- Bottom Navigation Screens -->
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.FavoritesFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorites">
+        <action
+            android:id="@+id/action_favoritesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_weeklyPlannerFragment"
+            app:destination="@id/weeklyPlannerFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/weeklyPlannerFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.WeeklyPlannerFragment"
+        android:label="Meal Planner"
+        tools:layout="@layout/fragment_weekly_planner">
+        <action
+            android:id="@+id/action_weeklyPlannerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_weeklyPlannerFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_weeklyPlannerFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_weeklyPlannerFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_weeklyPlannerFragment"
+            app:destination="@id/weeklyPlannerFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_weeklyPlannerFragment"
+            app:destination="@id/weeklyPlannerFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <!-- Meal Details Screen -->
+    <fragment
+        android:id="@+id/itemInfoFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.ItemInfoFragment"
+        android:label="Meal Details"
+        tools:layout="@layout/fragment_item_info">
+        <action
+            android:id="@+id/action_itemInfoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+
+    </fragment>
 </navigation>

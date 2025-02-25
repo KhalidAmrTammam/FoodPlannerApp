@@ -21,12 +21,10 @@ import com.google.android.gms.common.api.ApiException;
 import com.iti.java.foodplannerbykhalidamr.R;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.model.GoogleAuthModel;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.presenter.GoogleAuthPresenter;
-//import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.presenter.GoogleAuthPresenterInterface;
 
 public class AuthenticationFragment extends Fragment implements AuthNavigatorInterface {
 
     private static final int RC_SIGN_IN = 123;
-   // private GoogleAuthPresenterInterface presenter;
     private GoogleAuthPresenter presenter;
     private GoogleSignInClient googleSignInClient;
 

@@ -5,7 +5,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.iti.java.foodplannerbykhalidamr.authentication.AuthNavigatorInterface;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.model.GoogleAuthModelInterface;
 
-public class GoogleAuthPresenter /*implements GoogleAuthPresenterInterface */{
+public class GoogleAuthPresenter {
 
     private final GoogleAuthModelInterface model;
     private final AuthNavigatorInterface navigator;
@@ -15,7 +15,6 @@ public class GoogleAuthPresenter /*implements GoogleAuthPresenterInterface */{
         this.navigator = navigator;
     }
 
-    //@Override
     public void handleGoogleSignIn(String idToken) {
         model.signInWithGoogle(idToken, new GoogleAuthModelInterface.OnAuthCompleteListener() {
             @Override
@@ -30,17 +29,14 @@ public class GoogleAuthPresenter /*implements GoogleAuthPresenterInterface */{
         });
     }
 
-    //@Override
     public void navigateToEmailLogin() {
         navigator.goToEmailLogin();
     }
 
-    //@Override
     public void navigateToHome() {
         navigator.goToHome();
     }
 
-    //@Override
     public void navigateToSignUp() {
         navigator.goToSignUp();
     }
