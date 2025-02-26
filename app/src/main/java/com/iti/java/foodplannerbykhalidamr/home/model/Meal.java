@@ -1,45 +1,37 @@
 package com.iti.java.foodplannerbykhalidamr.home.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import com.google.gson.annotations.SerializedName;
+import com.iti.java.foodplannerbykhalidamr.MapConverter;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.List;
 
+@Entity(tableName = "meals")
+@TypeConverters(MapConverter.class)
 public class Meal {
-    @SerializedName("idMeal")
+    @PrimaryKey
+    @NonNull
     private String idMeal;
-
-    @SerializedName("strMeal")
     private String strMeal;
-
     @SerializedName("strMealThumb")
     private String strMealThumb;
-
-    @SerializedName("strInstructions")
     private String strInstructions;
-
-    @SerializedName("strYoutube")
     private String strYoutube;
-
-    @SerializedName("strArea")
     private String strArea;
+    private Map<String, String> strIngredients;
+    private Map<String, String> strMeasure;
 
-    private List<Ingredient> ingredients;
-
-    public Meal(String idMeal, String strMeal, String strMealThumb, String strInstructions, String strYoutube, String strArea, List<Ingredient> ingredients) {
-        this.idMeal = idMeal;
-        this.strMeal = strMeal;
-        this.strMealThumb = strMealThumb;
-        this.strInstructions = strInstructions;
-        this.strYoutube = strYoutube;
-        this.strArea = strArea;
-        this.ingredients = ingredients;
-    }
-
+    @NonNull
     public String getIdMeal() {
         return idMeal;
     }
 
-    public void setIdMeal(String idMeal) {
+    public void setIdMeal(@NonNull String idMeal) {
         this.idMeal = idMeal;
     }
 
@@ -83,48 +75,19 @@ public class Meal {
         this.strArea = strArea;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public Map<String, String> getStrIngredients() {
+        return strIngredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setStrIngredients(Map<String, String> strIngredients) {
+        this.strIngredients = strIngredients;
     }
 
+    public Map<String, String> getStrMeasure() {
+        return strMeasure;
+    }
 
-    public static class Ingredient {
-        private String name;
-        private String measure;
-        private String imageUrl;
-
-        public Ingredient(String name, String measure) {
-            this.name = name;
-            this.measure = measure;
-            this.imageUrl = "https://www.themealdb.com/images/ingredients/" + name + ".png";
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getMeasure() {
-            return measure;
-        }
-
-        public void setMeasure(String measure) {
-            this.measure = measure;
-        }
-
-        public String getImageUrl() {
-            return imageUrl;
-        }
-
-        public void setImageUrl(String imageUrl) {
-            this.imageUrl = imageUrl;
-        }
+    public void setStrMeasure(Map<String, String> strMeasure) {
+        this.strMeasure = strMeasure;
     }
 }

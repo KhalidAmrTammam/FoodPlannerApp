@@ -7,7 +7,6 @@ import com.iti.java.foodplannerbykhalidamr.home.model.DailyMealManager;
 import com.iti.java.foodplannerbykhalidamr.home.view.HomeView;
 import com.iti.java.foodplannerbykhalidamr.home.model.ApiService;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
-import com.iti.java.foodplannerbykhalidamr.home.model.MealsRemoteDataSource;
 
 import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -19,23 +18,19 @@ public class HomePresenter {
     private ApiService apiService;
     private Context context;
 
-    public HomePresenter(HomeView homeView, MealsRemoteDataSource mealsRemoteDataSource,Context context) {
+    public HomePresenter(HomeView homeView,  FirebaseAuth auth1, ApiService apiService, Context context) {
         this.homeView = homeView;
-        apiService = mealsRemoteDataSource.apiService;
-        this.auth = FirebaseAuth.getInstance();
-        this.context = context.getApplicationContext();
-
-
+        this.auth = auth1;
+        this.apiService = apiService;
+        this.context = context;
     }
+
 
     public void logout() {
         auth.signOut();
         homeView.logoutUser();
     }
 
-    public void navigateToProfile() {
-        homeView.navigateToProfile();
-    }
 
 
     public void loadMealOfTheDay() {

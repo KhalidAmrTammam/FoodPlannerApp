@@ -15,9 +15,6 @@ public interface HomeView {
 
     void displayMealOfTheDay(Meal meal);
     void displayMeals(List<Meal> meals);
-    void showLoading();
-    void hideLoading();
     void showError(String message);
     void logoutUser();
-    void navigateToProfile();
 }

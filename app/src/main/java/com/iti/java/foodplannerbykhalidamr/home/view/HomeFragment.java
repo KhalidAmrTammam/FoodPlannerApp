@@ -21,7 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.iti.java.foodplannerbykhalidamr.R;
+import com.iti.java.foodplannerbykhalidamr.home.model.ApiService;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 import com.iti.java.foodplannerbykhalidamr.home.model.MealsRemoteDataSource;
 import com.iti.java.foodplannerbykhalidamr.home.presenter.HomePresenter;
@@ -36,13 +38,10 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
     private ImageView mealOfTheDayImage;
     private RecyclerView mealsRecyclerView;
     private MealsAdapter mealsAdapter;
-    private ProgressBar loadingIndicator;
     private Toolbar toolbar;
+
     View myview;
 
-    public HomeFragment() {
-
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,13 +66,12 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
         mealOfTheDayText = view.findViewById(R.id.mealOfTheDayText);
         mealOfTheDayImage = view.findViewById(R.id.mealOfTheDayImage);
         mealsRecyclerView = view.findViewById(R.id.mealsRecyclerView);
-        loadingIndicator = view.findViewById(R.id.loadingIndicator);
         myview=view;
         mealsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         mealsAdapter = new MealsAdapter(getContext(),new ArrayList<>(),this);
         mealsRecyclerView.setAdapter(mealsAdapter);
 
-        presenter = new HomePresenter(this, MealsRemoteDataSource.getApiService(),getContext());
+        presenter = new HomePresenter(this, FirebaseAuth.getInstance(),MealsRemoteDataSource.getApiService(),getContext());
         presenter.loadMealOfTheDay();
         presenter.loadMeals();
     }
@@ -85,25 +83,14 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
     @Override
     public void displayMealOfTheDay(Meal meal) {
         mealOfTheDayText.setText(meal.getStrMeal());
-        Log.i("TAG", "displayMealOfTheDay: " + meal.getStrMeal());
         Glide.with(this).load(meal.getStrMealThumb()).into(mealOfTheDayImage);
     }
 
     @Override
     public void displayMeals(List<Meal> meals) {
         mealsAdapter.setMeals(meals);
-        Log.i("TAG", "displayMeals: "+meals.toString());
     }
 
-    @Override
-    public void showLoading() {
-        loadingIndicator.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideLoading() {
-        loadingIndicator.setVisibility(View.GONE);
-    }
 
     @Override
     public void showError(String message) {
@@ -116,12 +103,11 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
 
     }
 
-    @Override
-    public void navigateToProfile() {
-        Navigation.findNavController(requireView()).navigate(R.id.profileFragment);
-    }
 
     public void onMealClick(Meal meal) {
+        Bundle args = new Bundle();
+        args.putString("MEAL_ID", meal.getIdMeal());
+        Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_itemInfoFragment, args);
 
     }
 }
