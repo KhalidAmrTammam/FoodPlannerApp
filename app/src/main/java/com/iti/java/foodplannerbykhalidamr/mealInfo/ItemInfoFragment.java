@@ -1,5 +1,7 @@
-package com.iti.java.foodplannerbykhalidamr;
+package com.iti.java.foodplannerbykhalidamr.mealInfo;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,16 +11,23 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.iti.java.foodplannerbykhalidamr.R;
+import com.iti.java.foodplannerbykhalidamr.favorites.AppDatabase;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 import com.iti.java.foodplannerbykhalidamr.home.model.MealsRemoteDataSource;
+
+import java.util.Calendar;
 
 public class ItemInfoFragment extends Fragment implements ItemInfoView {
     private ItemInfoPresenter presenter;
@@ -27,9 +36,9 @@ public class ItemInfoFragment extends Fragment implements ItemInfoView {
     private TextView mealCountry;
     private TextView mealInstructions;
     private RecyclerView recycler;
-    private Toolbar toolbar;
     private Button btnFavorite;
     private WebView webView;
+    private Button btnAddToPlan;
 
     @Nullable
     @Override
@@ -41,14 +50,8 @@ public class ItemInfoFragment extends Fragment implements ItemInfoView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        toolbar = view.findViewById(R.id.home_toolbar);
-        if (toolbar != null) {
-            toolbar.setTitle("Meal Info");
-            toolbar.setTitleTextColor(ContextCompat.getColor(requireContext(), R.color.accentColor));
-            toolbar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primaryColor));
-        } else {
-            Log.e("ItemInfoFragment", "Toolbar not found in layout");
-        }
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
 
         recycler = view.findViewById(R.id.ingredients_recycler);
         mealImage = view.findViewById(R.id.mealImage);
@@ -57,12 +60,16 @@ public class ItemInfoFragment extends Fragment implements ItemInfoView {
         mealInstructions = view.findViewById(R.id.mealInstructions);
         webView = view.findViewById(R.id.mealVideo);
         btnFavorite = view.findViewById(R.id.btn_favorite);
+        Button btnAddToPlan = view.findViewById(R.id.btn_add_to_plan);
+        btnAddToPlan.setOnClickListener(v -> showDatePickerDialog());
 
-        recycler.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recycler.setLayoutManager(new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false));
 
         presenter = new ItemInfoPresenter(
                 MealsRemoteDataSource.getApiService(),
-                AppDatabase.getInstance(requireContext()).favoriteDao()
+                AppDatabase.getInstance(requireContext()).favoriteDao(),
+                AppDatabase.getInstance(requireContext()).weeklyPlanDao()
+
         );
         presenter.attachView(this);
 
@@ -73,18 +80,20 @@ public class ItemInfoFragment extends Fragment implements ItemInfoView {
             Log.e("ItemInfoFragment", "Meal ID is null");
         }
 
-        /*btnFavorite.setOnClickListener(v -> {
-            // Assuming you have a method to get the current meal
+        btnFavorite = view.findViewById(R.id.btn_favorite);
+        btnFavorite.setOnClickListener(v -> {
             Meal currentMeal = presenter.getCurrentMeal();
             if (currentMeal != null) {
                 presenter.toggleFavorite(currentMeal);
             }
-        });*/
+        });
+        String favmealId = getArguments().getString("MEAL_ID");
+        presenter.checkFavoriteStatus(mealId);
     }
 
     @Override
     public void showMealDetails(Meal meal) {
-        Log.d("TAG", "showMealDetails: " + meal.getStrMeal());
+        presenter.setCurrentMeal(meal);
         mealName.setText(meal.getStrMeal());
         mealCountry.setText("Country: " + meal.getStrArea());
         mealInstructions.setText("Instructions: " + meal.getStrInstructions());
@@ -127,4 +136,47 @@ public class ItemInfoFragment extends Fragment implements ItemInfoView {
     public void updateFavoriteStatus(boolean isFavorite) {
         btnFavorite.setText(isFavorite ? "Remove Favorite" : "Add to Favorites");
     }
+    private void showDatePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        Calendar maxDate = Calendar.getInstance();
+        maxDate.add(Calendar.DAY_OF_MONTH, 6);
+
+        DatePickerDialog datePicker = new DatePickerDialog(requireContext(),
+                (view, year, month, dayOfMonth) -> {
+                    Calendar selected = Calendar.getInstance();
+                    selected.set(year, month, dayOfMonth);
+
+                    if (selected.before(calendar) || selected.after(maxDate)) {
+                        showMessage("Please select a date within the next 7 days");
+                    } else {
+                        String formattedDate = String.format("%04d-%02d-%02d", year, month+1, dayOfMonth);
+                        presenter.saveToWeeklyPlan(formattedDate);
+                    }
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+
+        datePicker.getDatePicker().setMinDate(calendar.getTimeInMillis());
+        datePicker.getDatePicker().setMaxDate(maxDate.getTimeInMillis());
+        datePicker.show();
+    }
+
+   /* private boolean isValidDate(Calendar selectedDate) {
+        Calendar today = Calendar.getInstance();
+        Calendar maxDate = Calendar.getInstance();
+        maxDate.add(Calendar.DAY_OF_MONTH, 7);
+        return !selectedDate.before(today) && !selectedDate.after(maxDate);
+    }*/
+    @Override
+    public Context getViewContext() {
+        return isAdded() ? getContext() : null;
+    }
+
+    @Override
+    public void showMessage(String message) {
+        if (isAdded() && getContext() != null) {
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+        }    }
+
 }

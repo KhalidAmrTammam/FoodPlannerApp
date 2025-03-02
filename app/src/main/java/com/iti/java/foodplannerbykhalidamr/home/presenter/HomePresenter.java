@@ -63,13 +63,13 @@ public class HomePresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
-                    if (response.getMeals() != null && !response.getMeals().isEmpty()) {
+                    if (homeView != null && response.getMeals() != null && !response.getMeals().isEmpty()) {
                         Meal meal = response.getMeals().get(0);
                         DailyMealManager.saveDailyMeal(context, meal.getIdMeal());
                         homeView.displayMealOfTheDay(meal);
                     }
                 }, throwable -> {
-                    homeView.showError("Failed to load meal of the day");
+                    if (homeView != null) homeView.showError("Failed to load meal of the day");
                 });
     }
 

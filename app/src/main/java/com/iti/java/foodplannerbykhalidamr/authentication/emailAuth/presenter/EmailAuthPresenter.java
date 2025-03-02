@@ -5,14 +5,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.model.EmailAuthCompleteListener;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.view.EmailAuthViewer;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.model.EmailAuthenticator;
+import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
 
 public class EmailAuthPresenter {
     private final EmailAuthenticator model;
     private final EmailAuthViewer view;
+    private final FirestoreSyncHelper firestoreSyncHelper;
 
-    public EmailAuthPresenter(EmailAuthenticator model, EmailAuthViewer view) {
+
+    public EmailAuthPresenter(EmailAuthenticator model, EmailAuthViewer view, FirestoreSyncHelper firestoreSyncHelper) {
         this.model = model;
         this.view = view;
+        this.firestoreSyncHelper = firestoreSyncHelper;
     }
 
     public void signUp(String email, String password) {
@@ -21,6 +25,8 @@ public class EmailAuthPresenter {
             public void onSuccess(FirebaseUser user) {
                 view.showSuccess("Signup successful!");
                 view.navigateToHome();
+                firestoreSyncHelper.syncFavoritesFromFirestore(user.getUid());
+
             }
 
             @Override
@@ -36,6 +42,8 @@ public class EmailAuthPresenter {
             public void onSuccess(FirebaseUser user) {
                 view.showSuccess("Login successful!");
                 view.navigateToHome();
+                firestoreSyncHelper.syncFavoritesFromFirestore(user.getUid());
+
             }
 
             @Override

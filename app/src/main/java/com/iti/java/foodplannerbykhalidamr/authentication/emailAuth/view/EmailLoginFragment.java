@@ -18,11 +18,14 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.iti.java.foodplannerbykhalidamr.R;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.model.EmailAuth;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.presenter.EmailAuthPresenter;
+import com.iti.java.foodplannerbykhalidamr.favorites.FavoriteDao;
+import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
 //import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.EmailAuthPresenterInterface;
 
 public class EmailLoginFragment extends Fragment implements EmailAuthViewer {
     //private EmailAuthPresenterInterface presenter;
     private EmailAuthPresenter presenter;
+    FavoriteDao favoriteDao;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_email_login, container, false);
@@ -33,7 +36,7 @@ public class EmailLoginFragment extends Fragment implements EmailAuthViewer {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        presenter = new EmailAuthPresenter(new EmailAuth(), this);
+        presenter = new EmailAuthPresenter(new EmailAuth(), this, new FirestoreSyncHelper(favoriteDao));
 
         TextInputLayout emailLayout = view.findViewById(R.id.emailInputLayout);
         TextInputLayout passwordLayout = view.findViewById(R.id.passwordInputLayout);

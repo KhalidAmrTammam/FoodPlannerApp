@@ -10,9 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -39,6 +42,8 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
     private RecyclerView mealsRecyclerView;
     private MealsAdapter mealsAdapter;
     private Toolbar toolbar;
+    private CardView mealOfTheDayCard;
+    private Meal currentMealOfTheDay;
 
     View myview;
 
@@ -51,29 +56,30 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        toolbar = view.findViewById(R.id.home_toolbar);
-        toolbar.setTitle("Home");
-        toolbar.setTitleTextColor(ContextCompat.getColor(requireContext(), R.color.accentColor));
-        toolbar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primaryColor));
-        toolbar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.action_logout) {
-                presenter.logout();
-                return true;
-            }
-            return false;
-        });
 
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+
+        mealOfTheDayCard = view.findViewById(R.id.meal_of_the_day_card);
         mealOfTheDayText = view.findViewById(R.id.mealOfTheDayText);
         mealOfTheDayImage = view.findViewById(R.id.mealOfTheDayImage);
         mealsRecyclerView = view.findViewById(R.id.mealsRecyclerView);
         myview=view;
+
         mealsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         mealsAdapter = new MealsAdapter(getContext(),new ArrayList<>(),this);
         mealsRecyclerView.setAdapter(mealsAdapter);
 
         presenter = new HomePresenter(this, FirebaseAuth.getInstance(),MealsRemoteDataSource.getApiService(),getContext());
         presenter.loadMealOfTheDay();
+
+        mealOfTheDayCard.setOnClickListener(v -> {
+            if (currentMealOfTheDay != null) {
+                onMealClick(currentMealOfTheDay);
+            }
+        });
         presenter.loadMeals();
+
     }
 
     @Override
@@ -82,6 +88,8 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
     }
     @Override
     public void displayMealOfTheDay(Meal meal) {
+        if (!isAdded() || getContext() == null) return;
+        currentMealOfTheDay = meal;
         mealOfTheDayText.setText(meal.getStrMeal());
         Glide.with(this).load(meal.getStrMealThumb()).into(mealOfTheDayImage);
     }

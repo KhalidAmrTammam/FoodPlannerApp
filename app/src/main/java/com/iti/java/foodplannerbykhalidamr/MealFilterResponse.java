@@ -1,11 +1,11 @@
-package com.iti.java.foodplannerbykhalidamr.home.model;
+package com.iti.java.foodplannerbykhalidamr;
 
+import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 
 import java.util.List;
 
-public class MealResponse {
+public class MealFilterResponse {
     private List<Meal> meals;
-
 
     public List<Meal> getMeals() {
         return meals;

@@ -1,4 +1,4 @@
-package com.iti.java.foodplannerbykhalidamr;
+package com.iti.java.foodplannerbykhalidamr.mealInfo;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,11 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.iti.java.foodplannerbykhalidamr.R;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHolder> {

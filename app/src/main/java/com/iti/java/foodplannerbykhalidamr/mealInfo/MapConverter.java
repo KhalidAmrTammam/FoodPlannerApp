@@ -1,4 +1,4 @@
-package com.iti.java.foodplannerbykhalidamr;
+package com.iti.java.foodplannerbykhalidamr.mealInfo;
 
 import androidx.room.TypeConverter;
 import com.google.gson.Gson;

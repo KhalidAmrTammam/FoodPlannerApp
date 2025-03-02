@@ -5,9 +5,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.google.gson.annotations.SerializedName;
-import com.iti.java.foodplannerbykhalidamr.MapConverter;
-import java.util.HashMap;
+import com.iti.java.foodplannerbykhalidamr.mealInfo.MapConverter;
+
 import java.util.Map;
 
 
@@ -18,7 +17,6 @@ public class Meal {
     @NonNull
     private String idMeal;
     private String strMeal;
-    @SerializedName("strMealThumb")
     private String strMealThumb;
     private String strInstructions;
     private String strYoutube;

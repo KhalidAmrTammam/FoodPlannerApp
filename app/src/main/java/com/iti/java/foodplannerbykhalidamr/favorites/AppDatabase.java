@@ -1,4 +1,4 @@
-package com.iti.java.foodplannerbykhalidamr;
+package com.iti.java.foodplannerbykhalidamr.favorites;
 
 
 import android.content.Context;
@@ -7,9 +7,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.iti.java.foodplannerbykhalidamr.WeeklyPlan;
+import com.iti.java.foodplannerbykhalidamr.WeeklyPlanDao;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 
-@Database(entities = {Meal.class}, version = 2, exportSchema = false)
+@Database(entities = {Meal.class, WeeklyPlan.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
 
@@ -21,7 +23,8 @@ public abstract class AppDatabase extends RoomDatabase {
                             context.getApplicationContext(),
                             AppDatabase.class,
                             "food_planner_db"
-                    ).build();
+                    ).fallbackToDestructiveMigration()
+                     .build();
                 }
             }
         }
@@ -29,4 +32,5 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract FavoriteDao favoriteDao();
+    public abstract WeeklyPlanDao weeklyPlanDao();
 }

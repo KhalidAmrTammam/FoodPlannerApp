@@ -1,14 +1,17 @@
-package com.iti.java.foodplannerbykhalidamr;
+package com.iti.java.foodplannerbykhalidamr.mealInfo;
+
+import android.content.Context;
 
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
-import java.util.List;
-import java.util.Map;
 
 public interface ItemInfoView {
+    Context getViewContext();
+
     void showMealDetails(Meal meal);
     void showIngredients(Meal meal);
     void showError(String message);
     void loadYouTubeVideo(String embedUrl);
     void updateFavoriteStatus(boolean isFavorite);
+    void showMessage(String message);
 
 }

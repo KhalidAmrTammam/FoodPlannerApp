@@ -65,7 +65,7 @@
     <!-- Bottom Navigation Screens -->
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.iti.java.foodplannerbykhalidamr.FavoritesFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.favorites.FavoritesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorites">
         <action
@@ -80,6 +80,9 @@
         <action
             android:id="@+id/action_favoritesFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_itemInfoFragment"
+            app:destination="@id/itemInfoFragment" />
     </fragment>
 
     <fragment
@@ -99,6 +102,9 @@
         <action
             android:id="@+id/action_weeklyPlannerFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_weeklyPlannerFragment_to_itemInfoFragment"
+            app:destination="@id/itemInfoFragment" />
     </fragment>
 
     <fragment
@@ -118,6 +124,9 @@
         <action
             android:id="@+id/action_searchFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_itemInfoFragment"
+            app:destination="@id/itemInfoFragment" />
     </fragment>
 
     <fragment
@@ -142,7 +151,7 @@
     <!-- Meal Details Screen -->
     <fragment
         android:id="@+id/itemInfoFragment"
-        android:name="com.iti.java.foodplannerbykhalidamr.ItemInfoFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.mealInfo.ItemInfoFragment"
         android:label="Meal Details"
         tools:layout="@layout/fragment_item_info">
         <action
@@ -150,4 +159,5 @@
             app:destination="@id/homeFragment" />
 
     </fragment>
+    <action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment" />
 </navigation>

@@ -4,22 +4,28 @@ import android.util.Log;
 import com.google.firebase.auth.FirebaseUser;
 import com.iti.java.foodplannerbykhalidamr.authentication.AuthNavigatorInterface;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.model.GoogleAuthModelInterface;
+import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
 
 public class GoogleAuthPresenter {
 
     private final GoogleAuthModelInterface model;
     private final AuthNavigatorInterface navigator;
+    private final FirestoreSyncHelper firestoreSyncHelper;
 
-    public GoogleAuthPresenter(GoogleAuthModelInterface model, AuthNavigatorInterface navigator) {
+    public GoogleAuthPresenter(GoogleAuthModelInterface model, AuthNavigatorInterface navigator, FirestoreSyncHelper firestoreSyncHelper) {
         this.model = model;
         this.navigator = navigator;
+        this.firestoreSyncHelper = firestoreSyncHelper;
     }
 
     public void handleGoogleSignIn(String idToken) {
         model.signInWithGoogle(idToken, new GoogleAuthModelInterface.OnAuthCompleteListener() {
             @Override
             public void onSuccess(FirebaseUser user) {
+
                 navigator.goToHome();
+                firestoreSyncHelper.syncFavoritesFromFirestore(user.getUid());
+
             }
 
             @Override

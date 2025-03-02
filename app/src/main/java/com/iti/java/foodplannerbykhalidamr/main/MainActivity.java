@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.iti.java.foodplannerbykhalidamr.R;
 
 public class MainActivity extends AppCompatActivity implements MainView {
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         NavController navController = navHostFragment.getNavController();
 
         mainPresenter.handleNavigation(navController, bottomNavigationView);
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
     }
 
     @Override

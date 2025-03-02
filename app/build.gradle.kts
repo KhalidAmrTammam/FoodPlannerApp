@@ -51,11 +51,14 @@ dependencies {
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.rxjava3)
+    implementation(libs.recyclerview)
     annotationProcessor(libs.room.compiler)
 
     // Firebase
     implementation(libs.firebase.auth)
     implementation(libs.play.services.auth) // For Google Sign-In
+    implementation (libs.firebase.firestore)
+
 
     // Lottie
     implementation(libs.lottie)

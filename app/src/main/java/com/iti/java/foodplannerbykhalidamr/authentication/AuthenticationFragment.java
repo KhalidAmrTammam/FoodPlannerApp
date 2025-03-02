@@ -21,18 +21,22 @@ import com.google.android.gms.common.api.ApiException;
 import com.iti.java.foodplannerbykhalidamr.R;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.model.GoogleAuthModel;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.presenter.GoogleAuthPresenter;
+import com.iti.java.foodplannerbykhalidamr.favorites.FavoriteDao;
+import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
 
 public class AuthenticationFragment extends Fragment implements AuthNavigatorInterface {
 
     private static final int RC_SIGN_IN = 123;
     private GoogleAuthPresenter presenter;
     private GoogleSignInClient googleSignInClient;
+    FirestoreSyncHelper firestoreSyncHelper;
+    FavoriteDao favoriteDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("OnCreate", "onCreate: Created");
-        presenter = new GoogleAuthPresenter(new GoogleAuthModel(), this);
+        presenter = new GoogleAuthPresenter(new GoogleAuthModel(), this,new FirestoreSyncHelper(favoriteDao));
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))

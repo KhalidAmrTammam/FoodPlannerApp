@@ -17,7 +17,7 @@
             android:background="@color/primaryColor"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/home_top_bar"
-            app:title="Home"
+            app:title="Meal Info"
             app:titleTextColor="@color/accentColor" />
 
         <ImageView
@@ -73,9 +73,18 @@
 
         <Button
             android:id="@+id/btn_favorite"
-            android:layout_width="wrap_content"
+            android:layout_width="381dp"
             android:layout_height="wrap_content"
-            android:text="@string/add_to_favorites"/>
+            android:layout_marginTop="16dp"
+            android:text="@string/add_to_favorites" />
+
+        <Button
+            android:id="@+id/btn_add_to_plan"
+            android:layout_width="383dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/add_to_weekly_plan" />
+
 
     </LinearLayout>
 </ScrollView>

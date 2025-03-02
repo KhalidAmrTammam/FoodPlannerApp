@@ -4,6 +4,7 @@ agp = "8.8.0"
 appcompatVersion = "1.6.1"
 constraintlayoutVersion = "2.1.4"
 firebaseAuth = "23.2.0"
+firebaseFirestore = "25.1.2"
 glide = "4.16.0"
 googleServices = "4.4.2"
 gradle = "8.2.2"
@@ -22,6 +23,7 @@ retrofit = "2.11.0"
 roomRuntime = "2.6.1"
 rxandroid = "3.0.2"
 rxjava = "3.1.8"
+recyclerview = "1.4.0"
 
 [libraries]
 adapter-rxjava3 = { module = "com.squareup.retrofit2:adapter-rxjava3", version.ref = "adapterRxjava3" }
@@ -30,6 +32,7 @@ compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide
 constraintlayout-v214 = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayoutVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuth" }
+firebase-firestore = { module = "com.google.firebase:firebase-firestore", version.ref = "firebaseFirestore" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 google-services = { module = "com.google.gms:google-services", version.ref = "googleServices" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
@@ -51,6 +54,7 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRunti
 room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "roomRuntime" }
 rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
