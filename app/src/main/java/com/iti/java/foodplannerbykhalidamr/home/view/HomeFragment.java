@@ -1,31 +1,37 @@
 package com.iti.java.foodplannerbykhalidamr.home.view;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.iti.java.foodplannerbykhalidamr.R;
+import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.presenter.EmailAuthPresenter;
 import com.iti.java.foodplannerbykhalidamr.home.model.ApiService;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 import com.iti.java.foodplannerbykhalidamr.home.model.MealsRemoteDataSource;
@@ -41,9 +47,13 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
     private ImageView mealOfTheDayImage;
     private RecyclerView mealsRecyclerView;
     private MealsAdapter mealsAdapter;
-    private Toolbar toolbar;
     private CardView mealOfTheDayCard;
     private Meal currentMealOfTheDay;
+    private ImageButton imageButton;
+    private Toolbar toolbar;
+    private BottomNavigationView bottomNavigationView ;
+
+
 
     View myview;
 
@@ -57,8 +67,9 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        Toolbar toolbar = view.findViewById(R.id.toolbar1);
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        imageButton=view.findViewById(R.id.btn_logout);
 
         mealOfTheDayCard = view.findViewById(R.id.meal_of_the_day_card);
         mealOfTheDayText = view.findViewById(R.id.mealOfTheDayText);
@@ -71,6 +82,15 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
         mealsRecyclerView.setAdapter(mealsAdapter);
 
         presenter = new HomePresenter(this, FirebaseAuth.getInstance(),MealsRemoteDataSource.getApiService(),getContext());
+        boolean isGuest = requireActivity()
+                .getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+                .getBoolean("isGuest", false);
+        bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView);
+        if (isGuest) {
+            Menu menu = bottomNavigationView.getMenu();
+            menu.findItem(R.id.favoritesFragment).setVisible(false);
+            menu.findItem(R.id.weeklyPlannerFragment).setVisible(false);
+        }
         presenter.loadMealOfTheDay();
 
         mealOfTheDayCard.setOnClickListener(v -> {
@@ -79,6 +99,8 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
             }
         });
         presenter.loadMeals();
+        imageButton.setOnClickListener(v -> logoutUser());
+
 
     }
 
@@ -107,7 +129,20 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
 
     @Override
     public void logoutUser() {
-        Navigation.findNavController(requireView()).navigate(R.id.authenticationFragment4);
+        FirebaseAuth.getInstance().signOut();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
+        googleSignInClient.signOut().addOnCompleteListener(task -> {
+            Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_authenticationFragment4);
+        });
+        getActivity().getSharedPreferences("AppPrefs", getContext().MODE_PRIVATE)
+                .edit()
+                .remove("isGuest")
+                .apply();
+
 
     }
 
@@ -117,5 +152,21 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
         args.putString("MEAL_ID", meal.getIdMeal());
         Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_itemInfoFragment, args);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        boolean isGuest = requireActivity()
+                .getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+                .getBoolean("isGuest", false);
+
+        if (isGuest && (item.getItemId() == R.id.favoritesFragment || item.getItemId() == R.id.weeklyPlannerFragment)) {
+            showGuestRestrictionMessage();
+            return false; // Block navigation
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    private void showGuestRestrictionMessage() {
+        Toast.makeText(getContext(), "Login required to access this feature", Toast.LENGTH_SHORT).show();
     }
 }

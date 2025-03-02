@@ -3,6 +3,7 @@ package com.iti.java.foodplannerbykhalidamr.home.presenter;
 import android.content.Context;
 import android.util.Log;
 import com.google.firebase.auth.FirebaseAuth;
+import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.presenter.EmailAuthPresenter;
 import com.iti.java.foodplannerbykhalidamr.home.model.DailyMealManager;
 import com.iti.java.foodplannerbykhalidamr.home.view.HomeView;
 import com.iti.java.foodplannerbykhalidamr.home.model.ApiService;
@@ -17,6 +18,7 @@ public class HomePresenter {
     private final FirebaseAuth auth;
     private ApiService apiService;
     private Context context;
+    private EmailAuthPresenter presenter;
 
     public HomePresenter(HomeView homeView,  FirebaseAuth auth1, ApiService apiService, Context context) {
         this.homeView = homeView;
@@ -28,7 +30,7 @@ public class HomePresenter {
 
     public void logout() {
         auth.signOut();
-        homeView.logoutUser();
+        presenter.logout();
     }
 
 

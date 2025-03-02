@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.iti.java.foodplannerbykhalidamr.mealInfo.MapConverter;
+import com.iti.java.foodplannerbykhalidamr.mealInfo.model.MapConverter;
 
 import java.util.Map;
 

@@ -8,17 +8,36 @@
     tools:context="com.iti.java.foodplannerbykhalidamr.home.view.HomeFragment">
 
     <!-- Top Bar -->
+
+    <!-- Meal of the Day Section -->
+
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/home_toolbar"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar1"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/primaryColor"
-        app:titleTextColor="@color/accentColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="Home"
-        app:menu="@menu/home_top_bar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:titleTextColor="@android:color/white">
 
-    <!-- Meal of the Day Section -->
+        <!-- Logout Button -->
+        <ImageButton
+            android:id="@+id/btn_logout"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Logout"
+            android:src="@drawable/ic_logout"
+            app:tint="@color/accentColor"
+            tools:layout_editor_absoluteX="387dp"
+            tools:layout_editor_absoluteY="20dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/meal_of_the_day_card"
         android:layout_width="match_parent"
@@ -110,6 +129,6 @@
         android:text="@string/meal_of_the_day"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

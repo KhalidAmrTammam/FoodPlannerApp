@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class EmailAuth implements EmailAuthenticator {
     private final FirebaseAuth auth = FirebaseAuth.getInstance();
 
+
     @Override
     public void signUp(String email, String password, EmailAuthCompleteListener listener) {
         auth.createUserWithEmailAndPassword(email, password)
@@ -28,5 +29,10 @@ public class EmailAuth implements EmailAuthenticator {
                         listener.onFailure(task.getException().getMessage());
                     }
                 });
+    }
+
+    @Override
+    public void logout() {
+        auth.signOut();
     }
 }

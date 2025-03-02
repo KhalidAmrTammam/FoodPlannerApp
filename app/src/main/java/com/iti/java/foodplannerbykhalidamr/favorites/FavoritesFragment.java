@@ -1,7 +1,9 @@
 package com.iti.java.foodplannerbykhalidamr.favorites;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -34,7 +36,8 @@ public class FavoritesFragment extends Fragment implements FavoritesView, Favori
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
+
+        Toolbar toolbar = view.findViewById(R.id.toolbar1);
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
 
         RecyclerView recyclerView = view.findViewById(R.id.favoritesRecyclerView);

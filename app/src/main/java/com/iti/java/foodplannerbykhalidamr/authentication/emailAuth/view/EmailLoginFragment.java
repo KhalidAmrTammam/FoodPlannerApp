@@ -1,6 +1,7 @@
 package com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.view;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.iti.java.foodplannerbykhalidamr.R;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.model.EmailAuth;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.presenter.EmailAuthPresenter;
+import com.iti.java.foodplannerbykhalidamr.favorites.AppDatabase;
 import com.iti.java.foodplannerbykhalidamr.favorites.FavoriteDao;
 import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
 //import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.EmailAuthPresenterInterface;
@@ -25,7 +27,7 @@ import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
 public class EmailLoginFragment extends Fragment implements EmailAuthViewer {
     //private EmailAuthPresenterInterface presenter;
     private EmailAuthPresenter presenter;
-    FavoriteDao favoriteDao;
+    private FavoriteDao favoriteDao ;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_email_login, container, false);
@@ -37,6 +39,7 @@ public class EmailLoginFragment extends Fragment implements EmailAuthViewer {
         super.onViewCreated(view, savedInstanceState);
 
         presenter = new EmailAuthPresenter(new EmailAuth(), this, new FirestoreSyncHelper(favoriteDao));
+        favoriteDao = AppDatabase.getInstance(requireContext()).favoriteDao();
 
         TextInputLayout emailLayout = view.findViewById(R.id.emailInputLayout);
         TextInputLayout passwordLayout = view.findViewById(R.id.passwordInputLayout);
@@ -46,12 +49,18 @@ public class EmailLoginFragment extends Fragment implements EmailAuthViewer {
 
         loginButton.setOnClickListener(v ->
                 presenter.login(emailField.getText().toString().trim(), passwordField.getText().toString().trim())
+
         );
     }
 
     @Override
     public void showSuccess(String message) {
+        getActivity().getSharedPreferences("AppPrefs", getContext().MODE_PRIVATE)
+                .edit()
+                .remove("isGuest")
+                .apply();
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

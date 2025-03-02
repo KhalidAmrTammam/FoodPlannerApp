@@ -7,8 +7,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.iti.java.foodplannerbykhalidamr.WeeklyPlan;
-import com.iti.java.foodplannerbykhalidamr.WeeklyPlanDao;
+import com.iti.java.foodplannerbykhalidamr.weeklyPlanner.model.WeeklyPlan;
+import com.iti.java.foodplannerbykhalidamr.weeklyPlanner.model.WeeklyPlanDao;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 
 @Database(entities = {Meal.class, WeeklyPlan.class}, version = 3, exportSchema = false)

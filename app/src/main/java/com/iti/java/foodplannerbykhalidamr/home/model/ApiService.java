@@ -1,9 +1,9 @@
 package com.iti.java.foodplannerbykhalidamr.home.model;
 
-import com.iti.java.foodplannerbykhalidamr.CategoryResponse;
-import com.iti.java.foodplannerbykhalidamr.CountryResponse;
-import com.iti.java.foodplannerbykhalidamr.IngredientResponse;
-import com.iti.java.foodplannerbykhalidamr.MealFilterResponse;
+import com.iti.java.foodplannerbykhalidamr.search.model.CategoryResponse;
+import com.iti.java.foodplannerbykhalidamr.search.model.CountryResponse;
+import com.iti.java.foodplannerbykhalidamr.search.model.IngredientResponse;
+import com.iti.java.foodplannerbykhalidamr.search.model.MealFilterResponse;
 
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;

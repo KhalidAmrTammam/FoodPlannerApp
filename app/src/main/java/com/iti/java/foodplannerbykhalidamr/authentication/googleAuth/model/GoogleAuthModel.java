@@ -12,6 +12,7 @@ public class GoogleAuthModel implements GoogleAuthModelInterface {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         listener.onSuccess(auth.getCurrentUser());
+
                     } else {
                         listener.onFailure(task.getException().getMessage());
                     }

@@ -25,7 +25,7 @@ public class EmailAuthPresenter {
             public void onSuccess(FirebaseUser user) {
                 view.showSuccess("Signup successful!");
                 view.navigateToHome();
-                firestoreSyncHelper.syncFavoritesFromFirestore(user.getUid());
+              // firestoreSyncHelper.syncFavoritesFromFirestore(user.getUid());
 
             }
 
@@ -40,9 +40,10 @@ public class EmailAuthPresenter {
         model.login(email, password, new EmailAuthCompleteListener() {
             @Override
             public void onSuccess(FirebaseUser user) {
+
                 view.showSuccess("Login successful!");
                 view.navigateToHome();
-                firestoreSyncHelper.syncFavoritesFromFirestore(user.getUid());
+              //  firestoreSyncHelper.syncFavoritesFromFirestore(user.getUid());
 
             }
 
@@ -51,5 +52,9 @@ public class EmailAuthPresenter {
                 view.showError(errorMessage);
             }
         });
+    }
+    public void logout() {
+        model.logout();
+        view.showSuccess("Logged out successfully");
     }
 }

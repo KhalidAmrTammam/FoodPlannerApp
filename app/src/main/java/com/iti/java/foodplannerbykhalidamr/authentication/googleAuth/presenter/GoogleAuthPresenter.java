@@ -1,6 +1,9 @@
 package com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.presenter;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseUser;
 import com.iti.java.foodplannerbykhalidamr.authentication.AuthNavigatorInterface;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.model.GoogleAuthModelInterface;
@@ -22,9 +25,15 @@ public class GoogleAuthPresenter {
         model.signInWithGoogle(idToken, new GoogleAuthModelInterface.OnAuthCompleteListener() {
             @Override
             public void onSuccess(FirebaseUser user) {
+                Log.i("TAG", "onSuccess: ");
+                navigator.getContext().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("isGuest", false)
+                        .apply();
 
                 navigator.goToHome();
-                firestoreSyncHelper.syncFavoritesFromFirestore(user.getUid());
+                //firestoreSyncHelper.syncFavoritesFromFirestore(user.getUid());
+
 
             }
 

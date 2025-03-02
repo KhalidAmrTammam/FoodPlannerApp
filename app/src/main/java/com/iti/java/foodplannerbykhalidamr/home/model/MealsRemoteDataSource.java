@@ -2,7 +2,7 @@ package com.iti.java.foodplannerbykhalidamr.home.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.iti.java.foodplannerbykhalidamr.mealInfo.MealDeserializer;
+import com.iti.java.foodplannerbykhalidamr.mealInfo.model.MealDeserializer;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;

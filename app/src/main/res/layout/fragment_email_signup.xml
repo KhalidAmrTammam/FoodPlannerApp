@@ -26,7 +26,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:textColorHint="@color/accentColor"
-        android:inputType="textEmailAddress"
         app:boxStrokeColor="@color/accentColor"
         app:cursorColor="@color/accentColor"
         app:endIconTint="@color/accentColor"

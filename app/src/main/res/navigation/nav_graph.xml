@@ -7,7 +7,7 @@
     <!-- Splash Screen -->
     <fragment
         android:id="@+id/splashFragment4"
-        android:name="com.iti.java.foodplannerbykhalidamr.splahScreen.SplashFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.splahScreen.view.SplashFragment"
         android:label="SplashFragment">
         <action android:id="@+id/action_splashFragment4_to_authenticationFragment4" app:destination="@id/authenticationFragment4"/>
         <action android:id="@+id/action_splashFragment4_to_homeFragment" app:destination="@id/homeFragment"/>
@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_authenticationFragment4"
+            app:destination="@id/authenticationFragment4" />
     </fragment>
 
     <!-- Bottom Navigation Screens -->
@@ -87,7 +90,7 @@
 
     <fragment
         android:id="@+id/weeklyPlannerFragment"
-        android:name="com.iti.java.foodplannerbykhalidamr.WeeklyPlannerFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.weeklyPlanner.view.WeeklyPlannerFragment"
         android:label="Meal Planner"
         tools:layout="@layout/fragment_weekly_planner">
         <action
@@ -109,7 +112,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.iti.java.foodplannerbykhalidamr.SearchFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.search.view.SearchFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search">
         <action
@@ -151,7 +154,7 @@
     <!-- Meal Details Screen -->
     <fragment
         android:id="@+id/itemInfoFragment"
-        android:name="com.iti.java.foodplannerbykhalidamr.mealInfo.ItemInfoFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.mealInfo.view.ItemInfoFragment"
         android:label="Meal Details"
         tools:layout="@layout/fragment_item_info">
         <action

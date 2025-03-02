@@ -1,5 +1,6 @@
 package com.iti.java.foodplannerbykhalidamr.authentication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.iti.java.foodplannerbykhalidamr.R;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.model.GoogleAuthModel;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.presenter.GoogleAuthPresenter;
+import com.iti.java.foodplannerbykhalidamr.favorites.AppDatabase;
 import com.iti.java.foodplannerbykhalidamr.favorites.FavoriteDao;
 import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
 
@@ -29,14 +31,22 @@ public class AuthenticationFragment extends Fragment implements AuthNavigatorInt
     private static final int RC_SIGN_IN = 123;
     private GoogleAuthPresenter presenter;
     private GoogleSignInClient googleSignInClient;
-    FirestoreSyncHelper firestoreSyncHelper;
-    FavoriteDao favoriteDao;
+    private FirestoreSyncHelper firestoreSyncHelper;
+    private FavoriteDao favoriteDao;
+
+    @Nullable
+    @Override
+    public Context getContext() {
+        return super.getContext();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("OnCreate", "onCreate: Created");
         presenter = new GoogleAuthPresenter(new GoogleAuthModel(), this,new FirestoreSyncHelper(favoriteDao));
+        favoriteDao = AppDatabase.getInstance(requireContext()).favoriteDao();
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -59,7 +69,12 @@ public class AuthenticationFragment extends Fragment implements AuthNavigatorInt
 
         view.findViewById(R.id.btn_google_sign_in).setOnClickListener(v -> signInWithGoogle());
         view.findViewById(R.id.btn_username_login).setOnClickListener(v -> presenter.navigateToEmailLogin());
-        view.findViewById(R.id.btn_continue_guest).setOnClickListener(v -> presenter.navigateToHome());
+        view.findViewById(R.id.btn_continue_guest).setOnClickListener(v ->{presenter.navigateToHome();
+            getActivity().getSharedPreferences("AppPrefs", getContext().MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("isGuest", true)
+                    .apply();
+        } );
         view.findViewById(R.id.btn_sign_up).setOnClickListener(v -> presenter.navigateToSignUp());
     }
 
