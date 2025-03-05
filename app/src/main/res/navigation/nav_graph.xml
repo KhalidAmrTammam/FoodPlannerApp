@@ -68,7 +68,7 @@
     <!-- Bottom Navigation Screens -->
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.iti.java.foodplannerbykhalidamr.favorites.FavoritesFragment"
+        android:name="com.iti.java.foodplannerbykhalidamr.favorites.view.FavoritesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorites">
         <action

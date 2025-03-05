@@ -31,8 +31,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.iti.java.foodplannerbykhalidamr.R;
-import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.presenter.EmailAuthPresenter;
-import com.iti.java.foodplannerbykhalidamr.home.model.ApiService;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 import com.iti.java.foodplannerbykhalidamr.home.model.MealsRemoteDataSource;
 import com.iti.java.foodplannerbykhalidamr.home.presenter.HomePresenter;
@@ -91,6 +89,11 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
             menu.findItem(R.id.favoritesFragment).setVisible(false);
             menu.findItem(R.id.weeklyPlannerFragment).setVisible(false);
         }
+        else {
+            Menu menu = bottomNavigationView.getMenu();
+            menu.findItem(R.id.favoritesFragment).setVisible(true);
+            menu.findItem(R.id.weeklyPlannerFragment).setVisible(true);
+        }
         presenter.loadMealOfTheDay();
 
         mealOfTheDayCard.setOnClickListener(v -> {
@@ -142,6 +145,7 @@ public class HomeFragment extends Fragment implements HomeView, OnMealClickListe
                 .edit()
                 .remove("isGuest")
                 .apply();
+
 
 
     }

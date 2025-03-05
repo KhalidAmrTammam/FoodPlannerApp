@@ -2,12 +2,11 @@ package com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.presenter;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.iti.java.foodplannerbykhalidamr.authentication.AuthNavigatorInterface;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.model.GoogleAuthModelInterface;
-import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.FirestoreSyncHelper;
 
 public class GoogleAuthPresenter {
 

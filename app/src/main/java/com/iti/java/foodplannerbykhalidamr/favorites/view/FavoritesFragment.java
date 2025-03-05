@@ -1,9 +1,7 @@
-package com.iti.java.foodplannerbykhalidamr.favorites;
+package com.iti.java.foodplannerbykhalidamr.favorites.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.iti.java.foodplannerbykhalidamr.R;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.AppDatabase;
+import com.iti.java.foodplannerbykhalidamr.favorites.presenter.FavoritesPresenter;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 
 import java.util.ArrayList;

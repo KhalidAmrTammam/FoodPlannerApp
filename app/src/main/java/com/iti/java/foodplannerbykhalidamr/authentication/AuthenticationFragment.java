@@ -22,9 +22,9 @@ import com.google.android.gms.common.api.ApiException;
 import com.iti.java.foodplannerbykhalidamr.R;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.model.GoogleAuthModel;
 import com.iti.java.foodplannerbykhalidamr.authentication.googleAuth.presenter.GoogleAuthPresenter;
-import com.iti.java.foodplannerbykhalidamr.favorites.AppDatabase;
-import com.iti.java.foodplannerbykhalidamr.favorites.FavoriteDao;
-import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.AppDatabase;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.FavoriteDao;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.FirestoreSyncHelper;
 
 public class AuthenticationFragment extends Fragment implements AuthNavigatorInterface {
 

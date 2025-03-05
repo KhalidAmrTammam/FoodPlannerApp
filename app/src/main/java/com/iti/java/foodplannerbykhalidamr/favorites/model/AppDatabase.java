@@ -1,4 +1,4 @@
-package com.iti.java.foodplannerbykhalidamr.favorites;
+package com.iti.java.foodplannerbykhalidamr.favorites.model;
 
 
 import android.content.Context;

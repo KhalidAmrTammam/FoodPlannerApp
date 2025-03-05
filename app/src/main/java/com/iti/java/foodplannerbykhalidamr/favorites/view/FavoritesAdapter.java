@@ -1,4 +1,4 @@
-package com.iti.java.foodplannerbykhalidamr.favorites;
+package com.iti.java.foodplannerbykhalidamr.favorites.view;
 
 import android.view.LayoutInflater;
 import android.view.View;

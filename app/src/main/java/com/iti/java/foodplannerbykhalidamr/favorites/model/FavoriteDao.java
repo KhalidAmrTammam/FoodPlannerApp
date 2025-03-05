@@ -1,4 +1,4 @@
-package com.iti.java.foodplannerbykhalidamr.favorites;
+package com.iti.java.foodplannerbykhalidamr.favorites.model;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

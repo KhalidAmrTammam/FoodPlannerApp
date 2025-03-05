@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.iti.java.foodplannerbykhalidamr.R;
-import com.iti.java.foodplannerbykhalidamr.favorites.AppDatabase;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.AppDatabase;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 import com.iti.java.foodplannerbykhalidamr.home.model.MealsRemoteDataSource;
 import com.iti.java.foodplannerbykhalidamr.mealInfo.presenter.ItemInfoPresenter;
@@ -62,7 +62,7 @@ public class ItemInfoFragment extends Fragment implements ItemInfoView {
         mealInstructions = view.findViewById(R.id.mealInstructions);
         webView = view.findViewById(R.id.mealVideo);
         btnFavorite = view.findViewById(R.id.btn_favorite);
-        Button btnAddToPlan = view.findViewById(R.id.btn_add_to_plan);
+        btnAddToPlan = view.findViewById(R.id.btn_add_to_plan);
         btnAddToPlan.setOnClickListener(v -> showDatePickerDialog());
         boolean isGuest = requireActivity()
                 .getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)

@@ -6,8 +6,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.iti.java.foodplannerbykhalidamr.mealInfo.view.ItemInfoView;
 import com.iti.java.foodplannerbykhalidamr.weeklyPlanner.model.WeeklyPlan;
 import com.iti.java.foodplannerbykhalidamr.weeklyPlanner.model.WeeklyPlanDao;
-import com.iti.java.foodplannerbykhalidamr.favorites.FavoriteDao;
-import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.FavoriteDao;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.FirestoreSyncHelper;
 import com.iti.java.foodplannerbykhalidamr.home.model.ApiService;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 

@@ -1,4 +1,4 @@
-package com.iti.java.foodplannerbykhalidamr.favorites;
+package com.iti.java.foodplannerbykhalidamr.favorites.view;
 
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 import java.util.List;

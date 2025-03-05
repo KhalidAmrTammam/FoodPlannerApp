@@ -18,9 +18,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.iti.java.foodplannerbykhalidamr.R;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.model.EmailAuth;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.presenter.EmailAuthPresenter;
-import com.iti.java.foodplannerbykhalidamr.favorites.AppDatabase;
-import com.iti.java.foodplannerbykhalidamr.favorites.FavoriteDao;
-import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.AppDatabase;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.FavoriteDao;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.FirestoreSyncHelper;
 //import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.EmailAuthPresenterInterface;
 
 public class EmailSignupFragment extends Fragment implements EmailAuthViewer {

@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.iti.java.foodplannerbykhalidamr.R;
-import com.iti.java.foodplannerbykhalidamr.favorites.AppDatabase;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.AppDatabase;
 import com.iti.java.foodplannerbykhalidamr.weeklyPlanner.model.WeeklyPlan;
 import com.iti.java.foodplannerbykhalidamr.weeklyPlanner.model.WeeklyPlanDao;
 import com.iti.java.foodplannerbykhalidamr.weeklyPlanner.presenter.WeeklyPlannerPresenter;

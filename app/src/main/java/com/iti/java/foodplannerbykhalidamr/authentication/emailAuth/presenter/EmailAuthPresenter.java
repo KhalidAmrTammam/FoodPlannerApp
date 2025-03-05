@@ -5,7 +5,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.model.EmailAuthCompleteListener;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.view.EmailAuthViewer;
 import com.iti.java.foodplannerbykhalidamr.authentication.emailAuth.model.EmailAuthenticator;
-import com.iti.java.foodplannerbykhalidamr.favorites.FirestoreSyncHelper;
+import com.iti.java.foodplannerbykhalidamr.favorites.model.FirestoreSyncHelper;
 
 public class EmailAuthPresenter {
     private final EmailAuthenticator model;

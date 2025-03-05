@@ -1,5 +1,7 @@
-package com.iti.java.foodplannerbykhalidamr.favorites;
+package com.iti.java.foodplannerbykhalidamr.favorites.presenter;
 
+import com.iti.java.foodplannerbykhalidamr.favorites.model.FavoriteDao;
+import com.iti.java.foodplannerbykhalidamr.favorites.view.FavoritesView;
 import com.iti.java.foodplannerbykhalidamr.home.model.Meal;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
